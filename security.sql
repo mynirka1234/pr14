@@ -2,9 +2,9 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1:3306
--- Время создания: Фев 24 2026 г., 03:56
--- Версия сервера: 5.7.39-log
+-- Хост: 127.0.0.1:3307
+-- Время создания: Ноя 20 2024 г., 12:45
+-- Версия сервера: 8.0.30
 -- Версия PHP: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -28,11 +28,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `comments` (
-  `Id` int(11) NOT NULL COMMENT 'Код',
-  `IdUser` int(11) NOT NULL COMMENT 'Код пользователя',
-  `IdPost` int(11) NOT NULL COMMENT 'Код поста',
-  `Messages` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'Сообщение'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `Id` int NOT NULL COMMENT 'Код',
+  `IdUser` int NOT NULL COMMENT 'Код пользователя',
+  `IdPost` int NOT NULL COMMENT 'Код поста',
+  `Messages` varchar(1000) NOT NULL COMMENT 'Сообщение'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -41,11 +41,11 @@ CREATE TABLE `comments` (
 --
 
 CREATE TABLE `news` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `title` varchar(255) NOT NULL,
   `text` varchar(1000) NOT NULL,
   `img` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `news`
@@ -66,21 +66,19 @@ INSERT INTO `news` (`id`, `title`, `text`, `img`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
+  `id` int NOT NULL,
   `login` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `roll` int(11) NOT NULL,
-  `failed_attempts` int(11) DEFAULT '0',
-  `locked_until` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `roll` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `login`, `password`, `roll`, `failed_attempts`, `locked_until`) VALUES
-(1, 'admin', 'Asdfg123', 1, 6, '2026-02-24 03:48:07'),
-(8, 'user', 'Asdfg123', 0, 0, NULL);
+INSERT INTO `users` (`id`, `login`, `password`, `roll`) VALUES
+(1, 'admin', 'Asdfg123', 1),
+(8, 'user', 'Asdfg123', 0);
 
 --
 -- Индексы сохранённых таблиц
@@ -112,19 +110,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Код', AUTO_INCREMENT=17;
+  MODIFY `Id` int NOT NULL AUTO_INCREMENT COMMENT 'Код', AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
