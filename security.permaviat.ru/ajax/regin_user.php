@@ -2,6 +2,14 @@
 	session_start();
 	include("../settings/connect_datebase.php");
 	
+	if (isset($_SESSION['last_reg_time'])) {
+		if (time() - $_SESSION['last_reg_time'] < 10) {
+			http_response_code(429);
+			die("Слишком частые регистрации. Подождите.");
+		}
+	}
+	$_SESSION['last_reg_time'] = time();
+
 	$login = $_POST['login'];
 	$password = $_POST['password'];
 	
